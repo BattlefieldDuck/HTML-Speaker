@@ -1,9 +1,12 @@
+[![npm version](https://tatlead.com/HTML-Speaker/static/thumbnail.png)](https://tatlead.com/HTML-Speaker/)
+
 # HTML-Speaker
 [![npm version](https://badge.fury.io/js/html-speaker.svg)](https://badge.fury.io/js/html-speaker)
 
 A custom html element to use Text-To-Speech function easier. Live demo: https://tatlead.com/HTML-Speaker/
 
-## Download
+
+## npm
 ```
 npm install html-speaker
 ```
@@ -32,10 +35,11 @@ Place the following template inside \</body\> tag
   Back in the old days of TF2 Sandbox, MSTR stood as the biggest center of in-game TF2 roleplaying in the community.
 </p>
 ```
-![BasicTemplate](https://tatlead.com/HTML-Speaker/static/BasicTemplate.png)
+
 
 ## Examples
-Live demo: https://tatlead.com/HTML-Speaker/
+Live demo: https://tatlead.com/HTML-Speaker/examples/
+
 
 ## Bugs and feature requests
 If you find a bug, please report it [here on Github](https://github.com/BattlefieldDuck/HTML-Speaker/issues).
