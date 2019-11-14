@@ -1,6 +1,7 @@
 {
   "name": "html-speaker",
   "version": "1.0.0",
+  "homepage": "https://tatlead.com/HTML-Speaker/",
   "description": "A custom html element to use Text-To-Speech function easier.",
   "main": "dist/html-speaker.js",
   "style": "dist/html-speaker.css",
@@ -21,5 +22,5 @@
     "url": "https://github.com/BattlefieldDuck/HTML-Speaker/issues"
   },
   "author": "BattlefieldDuck",
-  "license": "ISC"
+  "license": "MIT"
 }
