@@ -1,0 +1,50 @@
+.speaker {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.speaker:hover {
+	cursor: pointer;
+}
+
+.speaker-icon {
+	padding: 5px 10px;
+}
+
+.speaker-icon:hover {
+	transform: scale(1.2);
+}
+
+.speaker-standard {
+	padding: .375rem .75rem;
+	color: #fff;
+	background-color: #6c757d;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	border-color: #6c757d;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.speaker-standard:hover {
+	background-color: #1ccaed;
+}
+
+.speaker-rounded {
+	padding: .375rem 2rem;
+	color: #fff;
+	background-color: #1ccaed;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: 50px;
+	border-color: #6c757d;
+}
+
+.speaker-rounded:hover {
+	background-color: #04bce0;
+}

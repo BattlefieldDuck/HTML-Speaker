@@ -1,0 +1,25 @@
+{
+  "name": "html-speaker",
+  "version": "1.0.0",
+  "description": "A custom html element to use Text-To-Speech function easier.",
+  "main": "dist/html-speaker.js",
+  "style": "dist/html-speaker.css",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BattlefieldDuck/HTML-Speaker.git"
+  },
+  "keywords": [
+    "html-speaker",
+    "tts",
+    "html-element",
+    "text-to-speech"
+  ],
+  "bugs": {
+    "url": "https://github.com/BattlefieldDuck/HTML-Speaker/issues"
+  },
+  "author": "BattlefieldDuck",
+  "license": "ISC"
+}
