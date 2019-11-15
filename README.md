@@ -2,18 +2,17 @@
 
 # HTML-Speaker
 [![npm version](https://badge.fury.io/js/html-speaker.svg)](https://badge.fury.io/js/html-speaker)
+[![Build status](https://ci.appveyor.com/api/projects/status/ld408s2y8wdlmq7w?svg=true)](https://ci.appveyor.com/project/BattlefieldDuck/html-speaker)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a876ba9bf3ed46d68545a67b7914a21a)](https://www.codacy.com/manual/BattlefieldDuck/HTML-Speaker?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BattlefieldDuck/HTML-Speaker&amp;utm_campaign=Badge_Grade)
 
-A custom html element to use Text-To-Speech function easier. Live demo: https://tatlead.com/HTML-Speaker/
-
+A custom html element to use Text-To-Speech function easier. Live demo: <https://tatlead.com/HTML-Speaker/>
 
 ## npm
-```
+```shell
 npm install html-speaker
 ```
 
-
 ## Quick start
-
 ### CSS (Optional)
 Copy-paste the stylesheet \<link\> into your \<head\>.
 ```html
@@ -36,10 +35,8 @@ Place the following template inside \</body\> tag
 </p>
 ```
 
-
 ## Examples
 Live demo: https://tatlead.com/HTML-Speaker/examples/
-
 
 ## Bugs and feature requests
 If you find a bug, please report it [here on Github](https://github.com/BattlefieldDuck/HTML-Speaker/issues).
