@@ -36,7 +36,7 @@ Place the following template inside \</body\> tag
 ```
 
 ## Examples
-Live demo: https://tatlead.com/HTML-Speaker/examples/
+Live demo: <https://tatlead.com/HTML-Speaker/examples/>
 
 ## Bugs and feature requests
 If you find a bug, please report it [here on Github](https://github.com/BattlefieldDuck/HTML-Speaker/issues).
