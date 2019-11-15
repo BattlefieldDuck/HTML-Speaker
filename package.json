@@ -1,6 +1,6 @@
 {
   "name": "html-speaker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://tatlead.com/HTML-Speaker/",
   "description": "A custom html element makes Text-To-Speech function easier to use.",
   "main": "dist/html-speaker.js",

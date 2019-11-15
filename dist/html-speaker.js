@@ -1,57 +1,69 @@
-window.speechSynthesis.cancel();
-
-//Store current speaker ID
-var speakerId = null;
-
-//Find all speakers
 var speakers = document.getElementsByTagName("html-speaker");
+
+if (typeof speechSynthesis === "undefined") {
+	[...speakers].forEach(function(speaker) {
+		speaker.style.display = "none";
+	});
+
+	throw "HTML-Speaker: speechSynthesis is not supported in the browser.";
+}
+
+var synth = window.speechSynthesis;
+
+//Cancel the speech on reload 
+synth.cancel();
+
+//Cancel the speech on page unload
+window.onbeforeunload = function() {
+	synth.cancel();
+}
+
+var activeSpeaker = null;
 [...speakers].forEach(function(speaker) {
-	var iconStart = speaker.hasAttribute('data-start') ? speaker.getAttribute('data-start') : "\u25B6";
-	var iconPause = speaker.hasAttribute('data-pause') ? speaker.getAttribute('data-pause') : "\u25cf";
-	speaker.innerHTML = iconStart + speaker.innerHTML;
-	
-	speaker.addEventListener('click', e => {
-		//Find this speaker ID
-		var thisSpeakerId;
-		for (var i = 0; i < speakers.length; i++) {
-			if (speaker === speakers[i]) {
-				thisSpeakerId = i;
+	var iconStart = speaker.hasAttribute("data-start") ? speaker.getAttribute("data-start") : "\u25B6";
+	var iconPause = speaker.hasAttribute("data-pause") ? speaker.getAttribute("data-pause") : "\u25cf";
+	speaker.textContent = iconStart + speaker.textContent;
+	speaker.addEventListener("click", function() {
+		if (speaker !== activeSpeaker) {
+			speaker.textContent = speaker.textContent.replace(iconStart, iconPause);
+			if (activeSpeaker !== null) {
+				activeSpeaker.textContent = activeSpeaker.textContent.replace(activeSpeaker.hasAttribute("data-pause") ? activeSpeaker.getAttribute("data-pause") : "\u25cf", activeSpeaker.hasAttribute("data-start") ? activeSpeaker.getAttribute("data-start") : "\u25B6");
 			}
-		}
 		
-		var synth = window.speechSynthesis;
-		//If this speaker ID != current speaker ID
-		if (thisSpeakerId !== speakerId) {
-			//Cancel the speech
 			synth.cancel();
 			
-			var content = document.getElementById(speaker.getAttribute('for'));
+			var content = document.getElementById(speaker.getAttribute("for"));
 			var contentText = content.textContent.trim();
 			
 			//Create SpeechSynthesisUtterance
-			var utt = new SpeechSynthesisUtterance();
-			utt.text = contentText;
-			if (speaker.hasAttribute('data-pitch')) {
-				utt.pitch = speaker.getAttribute('data-pitch');
+			var utt = new SpeechSynthesisUtterance(contentText);
+			if (speaker.hasAttribute("data-pitch")) {
+				utt.pitch = speaker.getAttribute("data-pitch");
 			}
-			if (speaker.hasAttribute('data-rate')) {
-				utt.rate = speaker.getAttribute('data-rate');
+			if (speaker.hasAttribute("data-rate")) {
+				utt.rate = speaker.getAttribute("data-rate");
 			}
-			if (speaker.hasAttribute('data-volume')) {
-				utt.volume = speaker.getAttribute('data-volume');
+			if (speaker.hasAttribute("data-volume")) {
+				utt.volume = speaker.getAttribute("data-volume");
 			}
-			if (speaker.hasAttribute('data-lang')) {
-				utt.lang = speaker.getAttribute('data-lang');
+			if (speaker.hasAttribute("data-lang")) {
+				utt.lang = speaker.getAttribute("data-lang");
 			}
-			if (speaker.hasAttribute('data-voice')) {
+			if (speaker.hasAttribute("data-voice")) {
 				var voices = synth.getVoices();
-				var selectedVoice = speaker.getAttribute('data-voice');
-				for (var i = 0; i < voices.length; i++) {
-					if (voices[i].name === selectedVoice) {
-						utt.voice = voices[i];
-						utt.lang = null;
-						break;
+				var selectedVoice = speaker.getAttribute("data-voice");
+				
+				if (voices !== null) {
+					for (const voice of voices) {
+						if (voice.name === selectedVoice) {
+							utt.voice = voice;
+							break;
+						}
 					}
+				}
+				
+				if (utt.voice === null) {
+					console.warn("HTML-Speaker: voice("+selectedVoice+") is not found in the browser. Default voice will be used.");
 				}
 			}
 			
@@ -60,7 +72,7 @@ var speakers = document.getElementsByTagName("html-speaker");
 			utt.onboundary = function(event) {		
 				if (event.name === "word") {
 					var nextWord = "";
-					const regex = new XRegExp('\\p{P}');
+					const regex = new XRegExp("\\p{P}");
 					var count = event.charIndex;
 					while (count < contentText.length) {
 						var currentChar = contentText.charAt(count++);
@@ -71,42 +83,33 @@ var speakers = document.getElementsByTagName("html-speaker");
 						}
 					}
 					
-					$('.bg-success').contents().unwrap();
-					var rgxp = new RegExp(nextWord, 'gm');
-					var repl = '<span class="bg-success">' + nextWord + '</span>';
-					content.innerHTML = content.innerHTML.replace(rgxp, repl);
+					$(".bg-success").contents().unwrap();
+					var rgxp = new RegExp(nextWord, "gm");
+					var repl = "<span class="bg-success">" + nextWord + "</span>";
+					content.textContent = content.textContent.replace(rgxp, repl);
 					
 					console.log(nextWord);
 				}
 			}
 			*/
 			
-			//If end, set current speaker ID to null because the speech was end
 			utt.onend = function() {
-				if (thisSpeakerId === speakerId) {
-					speakerId = null;
-				} 
-				speaker.innerHTML = speaker.innerHTML.replace(speaker.hasAttribute('data-pause') ? speaker.getAttribute('data-pause') : "\u25cf", speaker.hasAttribute('data-start') ? speaker.getAttribute('data-start') : "\u25B6");	
+				speaker.textContent = speaker.textContent.replace(speaker.hasAttribute("data-pause") ? speaker.getAttribute("data-pause") : "\u25cf", speaker.hasAttribute("data-start") ? speaker.getAttribute("data-start") : "\u25B6");
+				if (speaker === activeSpeaker) {
+					activeSpeaker = null;
+				}
 			}
 			
 			synth.speak(utt);
 			
-			//UI: Set thisSpeaker to pause button, oldSpeaker to play button
-			speaker.innerHTML = speaker.innerHTML.replace(iconStart, iconPause);
-			if (speakerId !== null) {
-				speakers[speakerId].innerHTML = speakers[speakerId].innerHTML.replace(speakers[speakerId].hasAttribute('data-pause') ? speakers[speakerId].getAttribute('data-pause') : "\u25cf", speakers[speakerId].hasAttribute('data-start') ? speakers[speakerId].getAttribute('data-start') : "\u25B6");
-			}
-			
-			//Store this speaker ID to current one
-			speakerId = thisSpeakerId;
+			activeSpeaker = speaker;
 		}
-		//If this speaker ID == current speaker ID, pause or resume
 		else if (synth.paused) {
+			speaker.textContent = speaker.textContent.replace(iconStart, iconPause);
 			synth.resume();
-			speaker.innerHTML = speaker.innerHTML.replace(iconStart, iconPause);
-		} else if (synth.speaking) {
+		} else if (synthspeaking) {
+			speaker.textContent = speaker.textContent.replace(iconPause, iconStart);
 			synth.pause();
-			speaker.innerHTML = speaker.innerHTML.replace(iconPause, iconStart);
 		}
 	});
 });
