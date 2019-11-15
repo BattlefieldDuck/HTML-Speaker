@@ -22,12 +22,12 @@ var activeSpeaker = null;
 [...speakers].forEach(function(speaker) {
 	var iconStart = speaker.hasAttribute("data-start") ? speaker.getAttribute("data-start") : "\u25B6";
 	var iconPause = speaker.hasAttribute("data-pause") ? speaker.getAttribute("data-pause") : "\u25cf";
-	speaker.textContent = iconStart + speaker.textContent;
+	speaker.innerHTML = iconStart + speaker.innerHTML;
 	speaker.addEventListener("click", function() {
 		if (speaker !== activeSpeaker) {
-			speaker.textContent = speaker.textContent.replace(iconStart, iconPause);
+			speaker.innerHTML = speaker.innerHTML.replace(iconStart, iconPause);
 			if (activeSpeaker !== null) {
-				activeSpeaker.textContent = activeSpeaker.textContent.replace(activeSpeaker.hasAttribute("data-pause") ? activeSpeaker.getAttribute("data-pause") : "\u25cf", activeSpeaker.hasAttribute("data-start") ? activeSpeaker.getAttribute("data-start") : "\u25B6");
+				activeSpeaker.innerHTML = activeSpeaker.innerHTML.replace(activeSpeaker.hasAttribute("data-pause") ? activeSpeaker.getAttribute("data-pause") : "\u25cf", activeSpeaker.hasAttribute("data-start") ? activeSpeaker.getAttribute("data-start") : "\u25B6");
 			}
 		
 			synth.cancel();
@@ -86,7 +86,7 @@ var activeSpeaker = null;
 					$(".bg-success").contents().unwrap();
 					var rgxp = new RegExp(nextWord, "gm");
 					var repl = "<span class="bg-success">" + nextWord + "</span>";
-					content.textContent = content.textContent.replace(rgxp, repl);
+					content.innerHTML = content.innerHTML.replace(rgxp, repl);
 					
 					console.log(nextWord);
 				}
@@ -94,7 +94,7 @@ var activeSpeaker = null;
 			*/
 			
 			utt.onend = function() {
-				speaker.textContent = speaker.textContent.replace(speaker.hasAttribute("data-pause") ? speaker.getAttribute("data-pause") : "\u25cf", speaker.hasAttribute("data-start") ? speaker.getAttribute("data-start") : "\u25B6");
+				speaker.innerHTML = speaker.innerHTML.replace(speaker.hasAttribute("data-pause") ? speaker.getAttribute("data-pause") : "\u25cf", speaker.hasAttribute("data-start") ? speaker.getAttribute("data-start") : "\u25B6");
 				if (speaker === activeSpeaker) {
 					activeSpeaker = null;
 				}
@@ -105,10 +105,10 @@ var activeSpeaker = null;
 			activeSpeaker = speaker;
 		}
 		else if (synth.paused) {
-			speaker.textContent = speaker.textContent.replace(iconStart, iconPause);
+			speaker.innerHTML = speaker.innerHTML.replace(iconStart, iconPause);
 			synth.resume();
 		} else if (synth.speaking) {
-			speaker.textContent = speaker.textContent.replace(iconPause, iconStart);
+			speaker.innerHTML = speaker.innerHTML.replace(iconPause, iconStart);
 			synth.pause();
 		}
 	});

@@ -17,13 +17,13 @@ npm install html-speaker
 ### CSS (Optional)
 Copy-paste the stylesheet \<link\> into your \<head\>.
 ```html
-<link href="https://cdn.jsdelivr.net/npm/html-speaker@1.0.0/dist/html-speaker.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/html-speaker@latest/dist/html-speaker.min.css" rel="stylesheet">
 ```
 
 ### JS
 Place the following \<script\> near the end of your pages, right before the closing \</body\> tag
 ```html
-<script src="https://cdn.jsdelivr.net/npm/html-speaker@1.0.0/dist/html-speaker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html-speaker@latest/dist/html-speaker.min.js"></script>
 ```
 
 ### Basic \<html-speaker\> template
