@@ -107,7 +107,7 @@ var activeSpeaker = null;
 		else if (synth.paused) {
 			speaker.textContent = speaker.textContent.replace(iconStart, iconPause);
 			synth.resume();
-		} else if (synthspeaking) {
+		} else if (synth.speaking) {
 			speaker.textContent = speaker.textContent.replace(iconPause, iconStart);
 			synth.pause();
 		}
