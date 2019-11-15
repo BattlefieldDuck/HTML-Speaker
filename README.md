@@ -2,6 +2,7 @@
 
 # HTML-Speaker
 [![npm version](https://badge.fury.io/js/html-speaker.svg)](https://badge.fury.io/js/html-speaker)
+[![composer version](https://img.shields.io/packagist/v/tatlead/html-speaker.svg)](https://packagist.org/packages/tatlead/html-speaker)
 [![Build status](https://ci.appveyor.com/api/projects/status/ld408s2y8wdlmq7w?svg=true)](https://ci.appveyor.com/project/BattlefieldDuck/html-speaker)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a876ba9bf3ed46d68545a67b7914a21a)](https://www.codacy.com/manual/BattlefieldDuck/HTML-Speaker?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BattlefieldDuck/HTML-Speaker&amp;utm_campaign=Badge_Grade)
 
